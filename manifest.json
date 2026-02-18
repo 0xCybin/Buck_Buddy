@@ -1,0 +1,92 @@
+{
+  "manifest_version": 3,
+  "name": "Buck Buddy",
+  "version": "2.0.0",
+  "description": "A Chrome extension to enhance GameStop customer service workflow",
+  "icons": {
+    "16": "assets/buck/Buck_16.png",
+    "32": "assets/buck/Buck_32.png",
+    "48": "assets/buck/Buck_48.png",
+    "128": "assets/buck/Buck_128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "assets/buck/Buck_16.png",
+      "32": "assets/buck/Buck_32.png",
+      "48": "assets/buck/Buck_48.png",
+      "128": "assets/buck/Buck_128.png"
+    },
+    "default_title": "Buck Buddy"
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "tabs",
+    "notifications",
+    "alarms",
+    "background"
+  ],
+  "host_permissions": [
+    "https://*.fedex.com/*",
+    "https://apis.fedex.com/*",
+    "https://apis-sandbox.fedex.com/*",
+    "https://apis.usps.com/*",
+    "https://*.freshdesk.com/*",
+    "https://*.gamestop.com/*",
+    "https://outlook.office.com/*",
+    "https://outlook.office365.com/*",
+    "https://outlook.live.com/*",
+    "https://app.powerbi.com/*",
+    "https://oms-web.prod-pci-gsaws.com/*",
+    "https://ipwho.is/*",
+    "https://get.geojs.io/*",
+    "https://ipapi.co/*",
+    "https://api.open-meteo.com/*",
+    "https://query1.finance.yahoo.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.freshdesk.com/*",
+        "https://outlook.office.com/*",
+        "https://outlook.office365.com/*",
+        "https://outlook.live.com/*",
+        "https://app.powerbi.com/*",
+        "https://oms-web.prod-pci-gsaws.com/*"
+      ],
+      "js": ["contentScript.js"],
+      "css": [],
+      "inject_css": false
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["breakOverlayInjector.js"],
+      "css": ["breakOverlay.css"],
+      "all_frames": true
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["hudInjector.js"],
+      "css": ["hud.css"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/buck/*",
+        "assets/sounds/*",
+        "assets/tamagotchi/*",
+        "assets/tamagotchi/**/*",
+        "main.css"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "offline_enabled": true,
+  "minimum_chrome_version": "88"
+}

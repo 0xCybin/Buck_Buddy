@@ -1,0 +1,100 @@
+/* Light theme -- CSS variable overrides only.
+   Activated via [data-theme="light"] on <html>.
+   All component colors are driven by inline styles using these variables,
+   so no Tailwind class remapping is needed. */
+
+[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f4f4f5;
+  --bg-tertiary: #e4e4e7;
+  --card-bg: #f4f4f5;
+
+  --text-primary: #18181b;
+  --text-secondary: #3f3f46;
+  --text-tertiary: #52525b;
+
+  --border-primary: #e4e4e7;
+  --border-secondary: #d4d4d8;
+
+  --hover-bg: #f4f4f5;
+  --active-bg: #e4e4e7;
+
+  --brand-primary: #dc2626;
+  --brand-secondary: #ef4444;
+  --brand-hover: #b91c1c;
+
+  --success-color: #16a34a;
+  --success-bg: rgba(22, 163, 74, 0.15);
+  --warning-color: #ca8a04;
+  --warning-bg: rgba(202, 138, 4, 0.15);
+  --error-color: #dc2626;
+  --error-bg: rgba(220, 38, 38, 0.15);
+
+  --achievement-border: #107c10;
+  --achievement-gradient-start: #107c10;
+  --achievement-gradient-end: #0e0e0e;
+  --achievement-icon-background: #107c10;
+  --achievement-icon: #ffffff;
+  --achievement-title: #ffffff;
+  --achievement-text: #d4d4d8;
+  --achievement-score: #ffd800;
+  --achievement-description: #a1a1aa;
+  --achievement-progress: #107c10;
+}
+
+/* Achievement toast -- force dark appearance even in light theme */
+[data-theme="light"] .achievement-pulse {
+  border-color: var(--achievement-border) !important;
+  box-shadow: 0 0 15px var(--achievement-border) !important;
+}
+
+[data-theme="light"] .achievement-glow {
+  background: linear-gradient(
+    to right,
+    var(--achievement-gradient-start),
+    var(--achievement-gradient-end)
+  ) !important;
+}
+
+[data-theme="light"] .achievement-icon-container {
+  background-color: var(--achievement-icon-background) !important;
+  border-color: var(--achievement-border) !important;
+}
+
+[data-theme="light"] .achievement-icon {
+  color: var(--achievement-icon) !important;
+}
+
+[data-theme="light"] .achievement-toast h3,
+[data-theme="light"] .achievement-toast span,
+[data-theme="light"] .achievement-toast p {
+  color: #ffffff !important;
+}
+
+[data-theme="light"] .achievement-toast .achievement-score {
+  color: #ffd800 !important;
+}
+
+[data-theme="light"] .achievement-progress {
+  background-color: var(--achievement-progress) !important;
+}
+
+/* Modal backdrop -- lighter than dark theme */
+[data-theme="light"] .bg-black\/80,
+[data-theme="light"] .bg-black\/90 {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Scrollbar */
+[data-theme="light"] *::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+[data-theme="light"] *::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border: 2px solid var(--bg-secondary);
+}
+
+[data-theme="light"] *::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}

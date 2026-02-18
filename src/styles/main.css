@@ -1,0 +1,357 @@
+/**
+ * main.css -- Primary stylesheet for the BuckBuddy popup.
+ *
+ * Structure:
+ *   1. Tailwind directives
+ *   2. Theme imports (dark.css, light.css, animations.css)
+ *   3. CSS custom properties (dark theme defaults in :root)
+ *   4. Typography utility classes
+ *   5. Custom scrollbar styles
+ *   6. Keyframe animations (buck, overlays, modals, achievements)
+ *   7. Component utility classes (status dots, brand buttons, focus rings)
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Theme and animation imports */
+@import "./themes/dark.css";
+@import "./themes/light.css";
+@import "./animations.css";
+
+/* Root popup container -- scopes all styles to avoid leaking into host pages */
+.buck-buddy-popup {
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Dark theme defaults in :root -- overridden by [data-theme="light"] in light.css */
+:root {
+  --bg-primary: #18181b;
+  --bg-secondary: #27272a;
+  --bg-tertiary: #3f3f46;
+  --card-bg: #27272a;
+
+  --text-primary: #ffffff;
+  --text-secondary: #d4d4d8;
+  --text-tertiary: #a1a1aa;
+
+  --border-primary: #3f3f46;
+  --border-secondary: #52525b;
+
+  --hover-bg: #3f3f46;
+  --active-bg: #52525b;
+
+  --brand-primary: #dc2626;
+  --brand-secondary: #ef4444;
+  --brand-hover: #b91c1c;
+
+  --success-color: #22c55e;
+  --success-bg: rgba(34, 197, 94, 0.2);
+  --warning-color: #eab308;
+  --warning-bg: rgba(234, 179, 8, 0.2);
+  --error-color: #ef4444;
+  --error-bg: rgba(239, 68, 68, 0.2);
+}
+
+.buck-buddy-popup {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* ---- Typography utility classes ---- */
+.buck-buddy-popup {
+  /* App Title */
+  .app-title {
+    @apply font-heading text-2xl;
+    font-size: 24px;
+    letter-spacing: -0.01em;
+  }
+
+  /* Section Headers */
+  .section-header {
+    @apply font-heading text-lg;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  /* Navigation Items */
+  .nav-item {
+    @apply font-heading text-lg;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  /* Button Text */
+  .btn-text {
+    @apply font-body text-base;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  /* Counter Text */
+  .counter-text {
+    @apply font-body text-base;
+    font-size: 14px;
+  }
+
+  /* Status Text */
+  .status-text {
+    @apply font-body text-base;
+    font-size: 14px;
+  }
+
+  /* Global Text Styles */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+    letter-spacing: -0.01em;
+  }
+
+  /* Regular text */
+  p,
+  input,
+  textarea,
+  button {
+    @apply font-body;
+    font-size: 14px;
+  }
+}
+
+/* ---- Custom scrollbar (WebKit only) ---- */
+.buck-buddy-popup *::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.buck-buddy-popup *::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border: none;
+}
+
+.buck-buddy-popup *::-webkit-scrollbar-thumb {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+  border: 2px solid var(--bg-secondary);
+}
+
+.buck-buddy-popup *::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+.buck-buddy-popup *::-webkit-scrollbar-corner {
+  background: var(--bg-secondary);
+}
+
+/* ---- Keyframe animations ---- */
+
+/* Buck mascot sprite-sheet animation (horizontal strip) */
+@keyframes buckTalking {
+  0% {
+    background-position-x: 0;
+  }
+  25% {
+    background-position-x: -25%;
+  }
+  50% {
+    background-position-x: -50%;
+  }
+  75% {
+    background-position-x: -75%;
+  }
+  100% {
+    background-position-x: 0;
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 1s infinite;
+  display: inline-block;
+  margin-left: 0.25rem;
+}
+
+/* Break-time idle animation.
+   NOTE: sleepyBuck keyframes are duplicated in animations.css -- consolidate when possible. */
+@keyframes sleepyBuck {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* NOTE: .sleepy-buck appears unused -- no references found in current JSX components */
+.sleepy-buck {
+  animation: sleepyBuck 2s ease-in-out infinite;
+}
+
+/* Overlay fade-in for modals and onboarding */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-in-out forwards;
+}
+
+/* Modal entry animation */
+@keyframes slideUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out forwards;
+}
+
+/* Data group hover -- subtle lift on hover */
+.data-group {
+  transition: transform 0.2s ease-in-out;
+}
+
+.data-group:hover {
+  transform: translateY(-1px);
+}
+
+/* NOTE: .hover-glow:hover appears unused -- no references found in current JSX components */
+.hover-glow:hover {
+  box-shadow: 0 0 10px var(--brand-primary);
+}
+
+/* ---- Achievement toast (Xbox-style notification) ---- */
+.achievement-pulse {
+  animation:
+    achievement-pulse 0.5s ease-in-out,
+    slideIn 0.3s ease-out forwards;
+}
+
+@keyframes achievement-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Achievement color palette (Xbox-inspired) */
+:root {
+  --xbox-green: #107c10;
+  --xbox-blue: #5fcde4;
+  --xbox-gold: #ffd800;
+  --xbox-gray: #3a3a3a;
+  --xbox-dark: #0e0e0e;
+}
+
+/* Toast slide-in from right (z-index: 50 via Tailwind) */
+.toast {
+  @apply fixed bottom-4 right-4 p-4 rounded-lg shadow-lg z-50;
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Theme editor preview: pulsing dashed outline on active region */
+@keyframes themePreviewPulse {
+  0%, 100% { outline-color: var(--brand-primary); }
+  50% { outline-color: transparent; }
+}
+
+.theme-preview-highlight {
+  outline: 2px dashed var(--brand-primary);
+  outline-offset: 3px;
+  animation: themePreviewPulse 1.5s ease-in-out infinite;
+}
+
+/* ---- Utility classes ---- */
+
+/* Accessible focus ring */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-zinc-900;
+}
+
+/* Status indicator dots (online/away/offline) */
+.status-dot {
+  @apply w-2 h-2 rounded-full;
+}
+
+.status-dot.online {
+  @apply bg-green-500;
+}
+
+.status-dot.away {
+  @apply bg-yellow-500;
+}
+
+.status-dot.offline {
+  @apply bg-red-500;
+}
+
+/* Brand color utility classes (GameStop red) */
+.btn-brand {
+  background-color: var(--brand-primary);
+  color: white;
+}
+
+.btn-brand:hover {
+  background-color: var(--brand-hover);
+}
+
+.text-brand {
+  color: var(--brand-primary);
+}
+
+.border-brand {
+  border-color: var(--brand-primary);
+}
+
+.focus-ring-brand {
+  @apply focus:outline-none focus:ring-2;
+  --tw-ring-color: var(--brand-primary);
+}

@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Claude Code
+.claude/
+
+# Environment / secrets
+.env
+.env.local
+src/config/.keys.json
+
+# OS artifacts
+nul
+Thumbs.db
+.DS_Store
+
+# Editor
+.vscode/
+*.swp
+*.swo
+
+# Source archives (keep originals in assets, not zips)
+*.zip

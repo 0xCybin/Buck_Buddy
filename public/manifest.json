@@ -1,0 +1,72 @@
+{
+  "manifest_version": 3,
+  "name": "Buck Buddy",
+  "version": "1.0.0",
+  "description": "A Chrome extension to enhance GameStop customer service workflow",
+  "icons": {
+    "16": "assets/buck/Buck_16.png",
+    "32": "assets/buck/Buck_32.png",
+    "48": "assets/buck/Buck_48.png",
+    "128": "assets/buck/Buck_128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "assets/buck/Buck_16.png",
+      "32": "assets/buck/Buck_32.png",
+      "48": "assets/buck/Buck_48.png",
+      "128": "assets/buck/Buck_128.png"
+    },
+    "default_title": "Buck Buddy"
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "tabs",
+    "notifications",
+    "alarms",
+    "background"
+  ],
+  "host_permissions": [
+    "https://*.fedex.com/*",
+    "https://*.zendesk.com/*",
+    "https://api.deepseek.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.zendesk.com/*"],
+      "js": ["contentScript.js"],
+      "css": [],
+      "inject_css": false
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["breakOverlayInjector.js"],
+      "css": ["breakOverlay.css"],
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/buck/*",
+        "complete_kb.json",
+        "assets/sounds/*",
+        "assets/sounds/Select_1.mp3",
+        "assets/sounds/Template_Page.mp3",
+        "assets/sounds/Chat_Page.mp3",
+        "assets/sounds/Data_Page.mp3",
+        "assets/sounds/Still_Alive.mp3",
+        "assets/sounds/not_Animal_Crossing_sounds.mp3"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "offline_enabled": true,
+  "minimum_chrome_version": "88"
+}

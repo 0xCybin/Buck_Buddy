@@ -1,0 +1,160 @@
+/* src/styles/animations.css */
+
+/* Sleepy Buck animation */
+@keyframes sleepyBuck {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sleepy-buck {
+  animation: sleepyBuck 2s ease-in-out infinite;
+}
+
+/* Break overlay fade in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-in-out forwards;
+}
+
+/* General animations */
+@keyframes buckTalking {
+  0% {
+    background-position-x: 0;
+  }
+  25% {
+    background-position-x: -25%;
+  }
+  50% {
+    background-position-x: -50%;
+  }
+  75% {
+    background-position-x: -75%;
+  }
+  100% {
+    background-position-x: 0;
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 1s infinite;
+  display: inline-block;
+  margin-left: 0.25rem;
+}
+
+/* Credits animation */
+@keyframes creditsScroll {
+  0% {
+    transform: translateY(100%);
+  }
+  2%,
+  5% {
+    transform: translateY(0);
+  }
+  95%,
+  98% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.credits-scroll {
+  animation: creditsScroll 30s linear infinite;
+}
+
+/* Achievement animations */
+@keyframes achievementPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes achievementGlow {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes achievementIcon {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(15deg) scale(1.1);
+  }
+  50% {
+    transform: rotate(0deg) scale(1);
+  }
+  75% {
+    transform: rotate(-15deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes achievementProgress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: var(--progress-width);
+  }
+}
+
+.achievement-pulse {
+  animation: achievementPulse 1.5s ease-in-out infinite;
+}
+
+.achievement-glow {
+  animation: achievementGlow 2s ease-in-out infinite;
+}
+
+.achievement-icon-container {
+  animation: achievementIcon 0.5s ease-in-out;
+}
+
+.achievement-progress {
+  animation: achievementProgress 0.75s ease-out forwards;
+}

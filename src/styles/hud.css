@@ -1,0 +1,28 @@
+/**
+ * hud.css -- Styles for the HUD overlay injected into Freshdesk pages.
+ *
+ * The HUD container covers the full viewport but passes all clicks through
+ * (pointer-events: none). Individual HUD panels inside it re-enable
+ * pointer-events on themselves so they remain interactive.
+ *
+ * NOTE: z-index 999998 is intentionally high to sit above most page content
+ * but could obscure Freshdesk's own modals/dropdowns. If conflicts arise,
+ * consider scoping or lowering this value.
+ */
+
+/* Full-viewport overlay container, hidden by default */
+#buck-buddy-hud {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Click-through so the underlying page remains usable */
+  z-index: 999998;      /* Just below max to stay above Freshdesk but below browser UI */
+}
+
+/* Toggled on via JS when HUD mode is enabled in settings */
+#buck-buddy-hud.active {
+  display: block;
+}

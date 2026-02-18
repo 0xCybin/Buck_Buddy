@@ -1,0 +1,56 @@
+[data-theme="dark"] {
+  /* Achievement colors */
+  --achievement-border: #107c10;
+  --achievement-gradient-start: #107c10;
+  --achievement-gradient-end: #0e0e0e;
+  --achievement-icon-background: #107c10;
+  --achievement-icon: #ffffff;
+  --achievement-title: #ffffff;
+  --achievement-text: #d4d4d8;
+  --achievement-score: #ffd800;
+  --achievement-description: #a1a1aa;
+  --achievement-progress: #107c10;
+}
+
+/* Achievement toast styles */
+[data-theme="dark"] .achievement-pulse {
+  border-color: var(--achievement-border);
+  box-shadow: 0 0 15px var(--achievement-border);
+}
+
+[data-theme="dark"] .achievement-glow {
+  background: linear-gradient(
+    to right,
+    var(--achievement-gradient-start),
+    var(--achievement-gradient-end)
+  );
+}
+
+[data-theme="dark"] .achievement-icon-container {
+  background-color: var(--achievement-icon-background);
+  border-color: var(--achievement-border);
+}
+
+[data-theme="dark"] .achievement-icon {
+  color: var(--achievement-icon);
+}
+
+[data-theme="dark"] .achievement-title {
+  color: var(--achievement-title);
+}
+
+[data-theme="dark"] .achievement-text {
+  color: var(--achievement-text);
+}
+
+[data-theme="dark"] .achievement-score {
+  color: var(--achievement-score);
+}
+
+[data-theme="dark"] .achievement-description {
+  color: var(--achievement-description);
+}
+
+[data-theme="dark"] .achievement-progress {
+  background-color: var(--achievement-progress);
+}
